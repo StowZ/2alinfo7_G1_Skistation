@@ -23,7 +23,7 @@ public class PisteServicesTest {
         piste.setLength(500);
         piste.setSlope(25);
 
-        // Add the piste
+        // Add piste
         Piste savedPiste = pisteServices.addPiste(piste);
 
         // Check if piste is saved successfully
