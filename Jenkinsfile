@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven "localMaven"
-        jdk "Java8"
+        jdk "/usr/lib/jvm/jre-11-openjdk"
     }
 
     environment {
