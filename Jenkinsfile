@@ -22,7 +22,7 @@ pipeline {
         stage("Check out") {
             steps {
                 script {
-                    git branch: 'feature/nexusUpload', url: 'https://github.com/StowZ/2alinfo7_G1_Skistation.git';
+                    git branch: 'youssef', url: 'https://github.com/StowZ/2alinfo7_G1_Skistation.git';
                 }
             }
         }
