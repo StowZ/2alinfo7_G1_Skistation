@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven "/usr/share/maven"
+        maven "M2_HOME"
         jdk "JAVA_HOME"
     }
 
