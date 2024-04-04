@@ -76,7 +76,7 @@
 		<repository>
 			<id>internal.repo</id>
 			<name>Temporary Staging Repository</name>
-			<url>http://192.168.35.6:8081/repository/maven-releases/</url>
+			<url>http://192.168.217.6:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 </project>
