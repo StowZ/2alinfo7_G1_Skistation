@@ -20,7 +20,7 @@ public class InstructorServicesTest {
     @Autowired
     private ICourseServices courseServices;
     @Test
-    public void testAddPiste() {
+    public void testAddInstructor() {
         // Create add
 
         Course course = new Course();
