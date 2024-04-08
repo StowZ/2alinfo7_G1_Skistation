@@ -8,11 +8,9 @@ import tn.esprit.spring.entities.Course;
 import tn.esprit.spring.entities.Instructor;
 import tn.esprit.spring.entities.Support;
 import tn.esprit.spring.entities.TypeCourse;
-
+import tn.esprit.spring.repositories.IInstructorRepository;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -27,12 +25,15 @@ public class InstructorServicesTest {
     private IInstructorServices instructorServices;
     @Autowired
     private ICourseServices courseServices;
+    @Autowired
+    private IInstructorRepository instructorRepository;
 
     @Test
     public void testAddInstructor() {
         // Create add
 
-        Course course = new Course();
+        Course course;
+        course = new Course();
         course.setLevel(1);
         course.setTypeCourse(TypeCourse.COLLECTIVE_CHILDREN);
         course.setSupport(Support.SNOWBOARD);
@@ -113,5 +114,6 @@ public class InstructorServicesTest {
         // Assert that the returned instructor is not null
         assertNotNull(result);
     }
+
 
 }

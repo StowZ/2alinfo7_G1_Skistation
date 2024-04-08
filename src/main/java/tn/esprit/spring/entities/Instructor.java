@@ -29,6 +29,6 @@ public class Instructor implements Serializable {
 	String firstName;
 	String lastName;
 	LocalDate dateOfHire;
-	@OneToMany
+	@OneToMany(mappedBy= "instructor")
 	Set<Course> courses;
 }
