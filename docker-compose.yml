@@ -1,7 +1,8 @@
-version : "3.3"
+version : "3"
 
 services:
     springboot-app:
       image: springboot-app
+      build: .
       ports:
         - 8088:8088
