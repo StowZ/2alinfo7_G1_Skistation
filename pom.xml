@@ -74,10 +74,10 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-		<repository>
-			<id>internal.repo</id>
+		<snapshotRepository>
+			<id>deploymentRepo</id>
 			<name>Temporary Staging Repository</name>
 			<url>http://192.168.170.175:8081/repository/maven-snapshots/</url>
-		</repository>
+		</snapshotRepository>
 	</distributionManagement>
 </project>
