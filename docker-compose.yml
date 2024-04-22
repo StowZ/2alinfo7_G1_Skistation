@@ -12,7 +12,7 @@ services:
 
   spring_app:
     image: imageproject
-    container_name: achatproject
+    container_name: containerDevops
     restart: on-failure
     ports:
       - 9090:9090
