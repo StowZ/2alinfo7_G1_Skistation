@@ -11,7 +11,7 @@ services:
       - /home/mysql/data:/var/lib/mysql
 
   spring_app:
-    image: achatproject
+    image: imageproject
     container_name: achatproject
     restart: on-failure
     ports:
