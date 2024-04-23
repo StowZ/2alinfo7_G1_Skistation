@@ -11,8 +11,8 @@ services:
       - /home/mysql/data:/var/lib/mysql
 
   spring_app:
-    image: achatproject
-    container_name: achatproject
+    image: imageproject
+    container_name: containerDevops
     restart: on-failure
     ports:
       - 9090:9090
