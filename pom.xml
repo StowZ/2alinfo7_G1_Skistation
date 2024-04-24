@@ -75,9 +75,9 @@
 	</build>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>deploymentRepo</id>
+			<id>Repo</id>
 			<name>Temporary Staging Repository</name>
-			<url>http://192.168.170.175:8081/repository/maven-snapshots/</url>
+			<url>http://192.168.89.175:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>
