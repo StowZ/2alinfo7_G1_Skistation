@@ -15,6 +15,6 @@ services:
     container_name: containerDevops
     restart: on-failure
     ports:
-      - 9091:8089
+      - 9092:8089
     depends_on:
       - mysqldb
