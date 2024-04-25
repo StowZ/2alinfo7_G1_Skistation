@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>gestion-station-ski</artifactId>
-	<version>2.0-RELEASES</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>gestion-station-ski</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -103,7 +103,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 
-			<url>http://192.168.217.6:8081/repository/maven-releases/</url>
+			<url>http://192.168.217.6:8081/repository/maven-snapshots/</url>
 		</repository>
 	</distributionManagement>
 </project>
