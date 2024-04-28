@@ -78,7 +78,7 @@
 	<distributionManagement>
 		<repository>
 			<id>Repo</id>
-			<url>http://192.168.90.138:8081/repository/maven-snapshots/</url>
+			<url>http://192.168.90.175:8081/repository/maven-snapshots/</url>
 		</repository>
 	</distributionManagement>
 </project>
