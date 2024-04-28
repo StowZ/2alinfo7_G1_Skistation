@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   mysqldb:
-    container_name: mysqldb1
+    container_name: mysqldb
     image: mysql:8
     restart: unless-stopped
     environment:
@@ -11,6 +11,7 @@ services:
       - /home/mysql/data:/var/lib/mysql
     networks:
       - mynetwork
+    command: ["bash", "-c", "if ! docker ps -a --format '{{.Names}}' | grep -Eq '^mysqldb1$'; then docker-compose up -d mysqldb1; fi"]
 
   spring_app:
     image: imageproject
