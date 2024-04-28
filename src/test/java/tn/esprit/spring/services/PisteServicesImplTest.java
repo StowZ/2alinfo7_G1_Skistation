@@ -1,69 +1,72 @@
-package tn.esprit.spring.controllers;
+package tn.esprit.spring.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import tn.esprit.spring.entities.Color;
 import tn.esprit.spring.entities.Piste;
-import tn.esprit.spring.services.IPisteServices;
+import tn.esprit.spring.repositories.IPisteRepository;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class PisteRestControllerTest {
-
-    private MockMvc mockMvc;
+public class PisteServicesImplTest {
 
     @Mock
-    private IPisteServices pisteServices;
+    private IPisteRepository pisteRepository;
+
+    @InjectMocks
+    private PisteServicesImpl pisteServices;
 
     @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(new PisteRestController(pisteServices)).build();
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testAddPiste() throws Exception {
-        Piste piste = new Piste(null, "Test Piste", Color.GREEN, 1000, 10, null);
+    public void testRetrieveAllPistes() {
+        List<Piste> pistes = new ArrayList<>();
+        pistes.add(new Piste());
+        pistes.add(new Piste());
+        when(pisteRepository.findAll()).thenReturn(pistes);
 
-        when(pisteServices.addPiste(any(Piste.class))).thenReturn(piste);
+        List<Piste> result = pisteServices.retrieveAllPistes();
 
-        mockMvc.perform(post("/piste/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(piste)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.namePiste").value("Test Piste"));
-
-        verify(pisteServices, times(1)).addPiste(any(Piste.class));
+        assertEquals(2, result.size());
     }
 
     @Test
-    void testGetAllPistes() throws Exception {
-        Piste piste1 = new Piste(1L, "Piste 1", Color.BLUE, 2000, 15, null);
-        Piste piste2 = new Piste(2L, "Piste 2", Color.RED, 1500, 12);
-        List<Piste> pistes = Arrays.asList(piste1, piste2);
+    public void testAddPiste() {
+        Piste piste = new Piste();
+        when(pisteRepository.save(piste)).thenReturn(piste);
 
-        when(pisteServices.retrieveAllPistes()).thenReturn(pistes);
+        Piste result = pisteServices.addPiste(piste);
 
-        mockMvc.perform(get("/piste/all"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].namePiste").value("Piste 1"))
-                .andExpect(jsonPath("$[1].namePiste").value("Piste 2"));
-
-        verify(pisteServices, times(1)).retrieveAllPistes();
+        assertEquals(piste, result);
     }
 
-    // Add more test methods for other controller endpoints similarly
+    @Test
+    public void testRemovePiste() {
+        Long numPiste = 1L;
+
+        pisteServices.removePiste(numPiste);
+
+        verify(pisteRepository, times(1)).deleteById(numPiste);
+    }
+
+    @Test
+    public void testRetrievePiste() {
+        Long numPiste = 1L;
+        Piste piste = new Piste();
+        when(pisteRepository.findById(numPiste)).thenReturn(Optional.of(piste));
+
+        Piste result = pisteServices.retrievePiste(numPiste);
+
+        assertEquals(piste, result);
+    }
 }
