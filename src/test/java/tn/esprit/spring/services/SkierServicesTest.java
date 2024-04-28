@@ -12,13 +12,13 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class SkierServicesTest {
+class SkierServicesTest {
 
     @Autowired
     private ISkierServices skierServices;
 
     @Test
-    public void testAddSkier() {
+    void testAddSkier() {
         // Create a new skier
         Skier skier = new Skier();
         skier.setFirstName("John");
